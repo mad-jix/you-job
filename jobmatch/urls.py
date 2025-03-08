@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from .views import index
 from employer.views import CompanyProfileViewSet, ReportViewSet, AnalyticsViewSet, JobPostingViewSet
 from jobseeker.views import JobSeekerProfileViewSet, SwipeViewSet, MatchViewSet, MessageViewSet
 from core.views import UserViewSet, AuthViewSet
@@ -56,6 +57,7 @@ router.register(r'reports', ReportViewSet)
 router.register(r'analytics', AnalyticsViewSet, basename='analytics')
 
 urlpatterns = [
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
